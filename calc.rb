@@ -1,28 +1,13 @@
 class Calc
   def initialize
     @result = nil
-    @method = nil
+    @operator = nil
   end
 
-  def plus
-    @method = :+
-    self
-  end
-
-  def minus
-    @method = :-
-    self
-  end
-
-  def times
-    @method = :*
-    self
-  end
-
-  def divided_by
-    @method = :/
-    self
-  end
+  def plus;       set_operator :+; end
+  def minus;      set_operator :-; end
+  def times;      set_operator :*; end
+  def divided_by; set_operator :/; end
 
   def zero;  calculate 0; end
   def one;   calculate 1; end
@@ -39,11 +24,16 @@ class Calc
 
   def calculate(num)
     if @result
-      @result.send(@method, num)
+      @result.send(@operator, num)
     else
       @result = num
       self
     end
+  end
+
+  def set_operator(opr)
+    @operator = opr
+    self
   end
 end
 
